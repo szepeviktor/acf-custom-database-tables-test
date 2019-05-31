@@ -1,0 +1,19 @@
+includes:
+    - vendor/phpstan/phpstan/conf/bleedingEdge.neon
+    - vendor/szepeviktor/phpstan-wordpress/extension.neon
+parameters:
+    level: max
+    paths:
+        - %currentWorkingDirectory%/src/app/
+#    excludes_analyse:
+    autoload_files:
+        - %currentWorkingDirectory%/src/app/Psr4Autoloader.php
+        - %currentWorkingDirectory%/tests/bootstrap.php
+        # Plugin stubs
+        - %currentWorkingDirectory%/tests/acf-pro-stubs.php
+    ignoreErrors:
+        # Uses func_get_args()
+        - '#^Function apply_filters invoked with [34567] parameters, 2 required\.$#'
+        - '#^Function do_action invoked with [3456] parameters, 1-2 required\.$#'
+        - '#^Function add_query_arg invoked with [123] parameters?, 0 required\.$#'
+        - '#^PHPDoc tag #'
